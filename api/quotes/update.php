@@ -18,33 +18,46 @@ $quote = new Quote($db);
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-// Debugging: Show received data
-echo json_encode(["received_data" => $data]);
-
 // Ensure required data is present
-if (!empty($data->id) && !empty($data->quote) && !empty($data->author_id) && !empty($data->category_id)) {
-    // Assign data to the quote object
-    $quote->id = intval($data->id);
-    $quote->quote = htmlspecialchars(strip_tags($data->quote));
-    $quote->author_id = intval($data->author_id);
-    $quote->category_id = intval($data->category_id);
+if (!isset($data->id, $data->quote, $data->author_id, $data->category_id) || 
+    empty($data->id) || empty($data->quote) || empty($data->author_id) || empty($data->category_id)) {
+    echo json_encode(["message" => "Missing Required Parameters"]);
+    exit();
+}
 
-    // Debugging: Confirm function call
-    echo json_encode(["message" => "Attempting to update record..."]);
+// Assign data to the quote object
+$quote->id = intval($data->id);
+$quote->quote = htmlspecialchars(strip_tags($data->quote));
+$quote->author_id = intval($data->author_id);
+$quote->category_id = intval($data->category_id);
 
-    // Update quote
+// Check if quote exists
+if (!$quote->exists()) {
+    echo json_encode(["message" => "No Quotes Found"]);
+    exit();
+}
 
-    if ($quote->exists()) {
-            // Update quote
-            if ($quote->update()) {
-                echo json_encode(array('message' => "Quote updated successfully."));
-            } else {
-                echo json_encode(array('message' => 'Failed to update category.'));
-            }
-        } else {
-            echo json_encode(array('message' => 'category_id Not Found.'));
-        }
+// Check if author_id exists
+if (!$author->exists($quote->author_id)) {
+    echo json_encode(["message" => "author_id Not Found"]);
+    exit();
+}
+
+// Check if category_id exists
+if (!$category->exists($quote->category_id)) {
+    echo json_encode(["message" => "category_id Not Found"]);
+    exit();
+}
+
+// Attempt to update the quote
+if ($quote->update()) {
+    echo json_encode([
+        "id" => $quote->id,
+        "quote" => $quote->quote,
+        "author_id" => $quote->author_id,
+        "category_id" => $quote->category_id
+    ]);
 } else {
-    echo json_encode(["message" => "Quote ID, text, author ID, and category ID are required."]);
+    echo json_encode(["message" => "Failed to update quote."]);
 }
 ?>
