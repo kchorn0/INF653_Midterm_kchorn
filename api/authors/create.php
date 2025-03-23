@@ -30,6 +30,6 @@ if (!empty($data->author)) {
         echo json_encode(['message' => 'Author not created.']);
     }
 } else {
-    echo json_encode(['message' => 'Author name is required.']);
+    echo json_encode(['message' => 'Missing Required Parameters']);
 }
 ?>

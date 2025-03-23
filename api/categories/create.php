@@ -22,11 +22,14 @@ if (!empty($data->category)) {
 
     // Create category
     if ($category->create()) {
-        echo json_encode(array('message' => 'Category created.'));
+        echo json_encode([
+            'id' => $category->id, // Return the last inserted ID
+            'category' => $category->category
+        ]);
     } else {
         echo json_encode(array('message' => 'Category not created.'));
     }
 } else {
-    echo json_encode(array('message' => 'Category name is required.'));
+    echo json_encode(array('message' => 'Missing Required Parameters'));
 }
 ?>
