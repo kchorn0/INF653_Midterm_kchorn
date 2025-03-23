@@ -22,11 +22,14 @@ if (!empty($data->author)) {
 
     // Create author
     if ($author->create()) {
-        echo json_encode(array('message' => 'Author created.'));
+        echo json_encode([
+            'id' => $author->id, // Return the last inserted ID
+            'author' => $author->author
+        ]);
     } else {
-        echo json_encode(array('message' => 'Author not created.'));
+        echo json_encode(['message' => 'Author not created.']);
     }
 } else {
-    echo json_encode(array('message' => 'Author name is required.'));
+    echo json_encode(['message' => 'Author name is required.']);
 }
 ?>
