@@ -20,7 +20,9 @@ if (!empty($data->id)) {
     if (!$quote->exists()) {
         echo json_encode(['message' => 'No Quotes Found']);
     } elseif ($quote->delete()) {
-        echo json_encode(['message' => 'Quote Deleted']);
+        echo json_encode([
+            'id' => $quote->id
+        ]);
     } else {
         echo json_encode(['message' => 'Quote Not Deleted']);
     }

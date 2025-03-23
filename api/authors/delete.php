@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: DELETE');
-header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
 
 include_once '../../config/Database.php';
 include_once '../../models/Author.php';
@@ -23,13 +23,15 @@ if (!empty($data->id)) {
 
     // Check if the author exists before deleting
     if (!$author->exists()) {
-        echo json_encode(['message' => 'author_id Not Found']);
+        echo json_encode(['message' => 'Author ID Not Found']);
     } elseif ($author->delete()) {
-        echo json_encode(['message' => 'Author Deleted']);
+        echo json_encode([
+            'id' => $author->id
+        ]);
     } else {
         echo json_encode(['message' => 'Author Not Deleted']);
     }
 } else {
-    echo json_encode(['message' => 'author_id is required.']);
+    echo json_encode(['message' => 'Author ID is required.']);
 }
 ?>

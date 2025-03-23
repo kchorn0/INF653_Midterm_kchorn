@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: DELETE');
-header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
 
 include_once '../../config/Database.php';
 include_once '../../models/Category.php';
@@ -23,13 +23,15 @@ if (!empty($data->id)) {
 
     // Check if the category exists before deleting
     if (!$category->exists()) {
-        echo json_encode(['message' => 'category_id Not Found']);
+        echo json_encode(['message' => 'Category ID Not Found']);
     } elseif ($category->delete()) {
-        echo json_encode(['message' => 'Category Deleted']);
+        echo json_encode([
+            'id' => $category->id
+        ]);
     } else {
         echo json_encode(['message' => 'Category Not Deleted']);
     }
 } else {
-    echo json_encode(['message' => 'category_id is required.']);
+    echo json_encode(['message' => 'Category ID is required.']);
 }
 ?>
