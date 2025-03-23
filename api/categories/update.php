@@ -26,14 +26,17 @@ if (isset($data->id) && isset($data->category) && !empty($data->id) && !empty($d
     if ($category->exists()) {
         // Update category
         if ($category->update()) {
-            echo json_encode(array('message' => 'Category updated.'));
+            echo json_encode(array(
+                'id' => $category->id,
+                'category' => $category->category
+            ));
         } else {
             echo json_encode(array('message' => 'Failed to update category.'));
         }
     } else {
-        echo json_encode(array('message' => 'category_id Not Found.'));
+        echo json_encode(array('message' => 'Category ID Not Found.'));
     }
 } else {
-    echo json_encode(array('message' => '‘Missing Required Parameters'));
+    echo json_encode(array('message' => 'Missing Required Parameters'));
 }
 ?>

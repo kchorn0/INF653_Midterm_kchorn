@@ -7,7 +7,6 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 include_once '../../config/Database.php';
 include_once '../../models/Author.php';
 
-
 // Instantiate DB & connect
 $database = new Database();
 $db = $database->connect();
@@ -27,7 +26,10 @@ if (isset($data->id) && isset($data->author) && !empty($data->id) && !empty($dat
     if ($author->exists()) {
         // Update author
         if ($author->update()) {
-            echo json_encode(array('message' => 'Author updated.'));
+            echo json_encode(array(
+                'id' => $author->id,
+                'author' => $author->author
+            ));
         } else {
             echo json_encode(array('message' => 'Failed to update author.'));
         }
@@ -35,6 +37,6 @@ if (isset($data->id) && isset($data->author) && !empty($data->id) && !empty($dat
         echo json_encode(array('message' => 'Author ID Not Found.'));
     }
 } else {
-    echo json_encode(array('message' => '‘Missing Required Parameters'));
+    echo json_encode(array('message' => 'Missing Required Parameters'));
 }
 ?>
