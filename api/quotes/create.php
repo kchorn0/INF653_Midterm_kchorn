@@ -20,7 +20,16 @@ if (!empty($data->quote) && !empty($data->author_id) && !empty($data->category_i
     $quote->category_id = intval($data->category_id);
 
     if ($quote->create()) {
-        echo json_encode(['message' => 'Quote Created']);
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $quotes_arr[] = [
+                'id' => $row['id'],
+                'quote' => $row['quote'],
+                'author_id' => $row['author_id'],
+                'category_id' => $row['category_id']
+            ];
+        }
+
+        echo json_encode($quotes_arr);
     } else {
         echo json_encode(['message' => 'Quote Not Created']);
     }
