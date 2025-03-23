@@ -53,8 +53,6 @@ else{
                         $quotes_arr[] = [
                             'id' => $row['id'],
                             'quote' => $row['quote'],
-                            'author_id' => $row['author_id'],
-                            'category_id' => $row['category_id'],
                             'author' => $row['author'],
                             'category' => $row['category']
                         ];
