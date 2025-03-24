@@ -8,10 +8,10 @@ This project is a PHP OOP REST API developed for the INF653 midterm.
 https://inf653-midterm-kchorn.onrender.com
 
 ## Api Endpoints
-https://inf653-midterm-kchorn.onrender.com/api
-https://inf653-midterm-kchorn.onrender.com/api/authors/
-https://inf653-midterm-kchorn.onrender.com/api/categories/
-https://inf653-midterm-kchorn.onrender.com/api/quotes/
+https://inf653-midterm-kchorn.onrender.com/api  
+https://inf653-midterm-kchorn.onrender.com/api/authors/  
+https://inf653-midterm-kchorn.onrender.com/api/categories/  
+https://inf653-midterm-kchorn.onrender.com/api/quotes/  
 
 ## Hosts
 Database- Render, Azure, Postgres, Myphpadmin
