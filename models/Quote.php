@@ -5,8 +5,8 @@ class Quote {
 
     public $id;
     public $quote;
-    public $authorId;
-    public $categoryId;
+    public $author_id;
+    public $category_id;
     public $author;
     public $category;
 
