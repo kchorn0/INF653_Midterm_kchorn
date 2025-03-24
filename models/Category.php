@@ -74,5 +74,16 @@ class Category {
     
         return $stmt->rowCount() > 0; // Returns true if the category exists, otherwise false
     }
+
+
+    public function exists2() {
+        $query = "SELECT id FROM categories WHERE id = :id LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $this->id);
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 0;
+    }
+    
 }
 ?>
