@@ -6,7 +6,6 @@ This project is a PHP OOP REST API developed for the INF653 midterm.
 
 ## Link to Project!
 https://inf653-midterm-kchorn.onrender.com/api  
-https://inf653-midterm-kchorn.onrender.com  
 
 ## Api Endpoints
 https://inf653-midterm-kchorn.onrender.com/api  
