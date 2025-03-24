@@ -7,6 +7,8 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 
 include_once '../../config/Database.php';
 include_once '../../models/Quote.php';
+include_once '../../models/Author.php';
+include_once '../../models/Category.php';
 
 // Instantiate DB & connect
 $database = new Database();
@@ -14,6 +16,8 @@ $db = $database->connect();
 
 // Instantiate quote object
 $quote = new Quote($db);
+$author = new Author($db);
+$category = new Category($db);
 
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
@@ -38,13 +42,13 @@ if (!$quote->exists()) {
 }
 
 // Check if author_id exists
-if (!$author->exists($quote->author_id)) {
+if (!$author->exists3($quote->author_id)) {
     echo json_encode(["message" => "author_id Not Found"]);
     exit();
 }
 
 // Check if category_id exists
-if (!$category->exists($quote->category_id)) {
+if (!$category->exists3($quote->category_id)) {
     echo json_encode(["message" => "category_id Not Found"]);
     exit();
 }

@@ -86,6 +86,16 @@ class Author {
         
         return $stmt->rowCount() > 0;
     }
+
+    public function exists3($author_id) {
+        $query = 'SELECT id FROM authors WHERE id = :id LIMIT 1';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $author_id);
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 0;
+    }
+    
     
 }
 ?>
