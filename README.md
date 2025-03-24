@@ -14,6 +14,6 @@ https://inf653-midterm-kchorn.onrender.com/api/categories/
 https://inf653-midterm-kchorn.onrender.com/api/quotes/  
 
 ## Hosts
-Database- Render, Azure, Postgres, Myphpadmin
-URL- Render with Docker
-Code- 
+Database- Render, Azure, Postgres, Myphpadmin  
+URL- Render with Docker  
+Code-   
