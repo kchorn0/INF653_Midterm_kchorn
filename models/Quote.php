@@ -153,7 +153,7 @@ class Quote {
                 WHERE q.author_id = :author_id";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':author_id', $this->authorId, PDO::PARAM_INT);
+        $stmt->bindParam(':author_id', $this->author_id, PDO::PARAM_INT);
         $stmt->execute();
         
         return $stmt;
@@ -173,7 +173,7 @@ class Quote {
                 WHERE q.category_id = :category_id";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':category_id', $this->categoryId, PDO::PARAM_INT);
+        $stmt->bindParam(':category_id', $this->category_id, PDO::PARAM_INT);
         $stmt->execute();
         
         return $stmt;
@@ -191,8 +191,8 @@ class Quote {
                   WHERE q.category_id = :categoryId AND q.author_id = :authorId";
     
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':categoryId', $this->categoryId);
-        $stmt->bindParam(':authorId', $this->authorId);
+        $stmt->bindParam(':categoryId', $this->category_id);
+        $stmt->bindParam(':authorId', $this->author_id);
         $stmt->execute();
     
         return $stmt;
