@@ -14,7 +14,7 @@ $quote = new Quote($db);
 
 // Check if category_id is provided
 if (isset($_GET['category_id'])) {
-    $quote->categoryId = $_GET['category_id'];
+    $quote->category_id = $_GET['category_id'];
 
     // Get quotes by category_id
     $result = $quote->read_by_category();

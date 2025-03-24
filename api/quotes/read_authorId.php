@@ -14,7 +14,7 @@ $quote = new Quote($db);
 
 // Check if author_id is provided
 if (isset($_GET['author_id'])) {
-    $quote->authorId = $_GET['author_id'];
+    $quote->author_id = $_GET['author_id'];
 
     // Get quotes by author_id
     $result = $quote->read_by_author();

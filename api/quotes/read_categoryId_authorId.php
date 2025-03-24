@@ -14,8 +14,8 @@ $quote = new Quote($db);
 
 // Check if category_id and author_id are provided
 if (isset($_GET['category_id']) && isset($_GET['author_id'])) {
-    $quote->categoryId = $_GET['category_id'];
-    $quote->authorId = $_GET['author_id'];
+    $quote->category_id = $_GET['category_id'];
+    $quote->author_id = $_GET['author_id'];
 
     // Get quotes by category_id and author_id
     $result = $quote->read_by_category_author();
