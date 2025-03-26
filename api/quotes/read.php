@@ -1,18 +1,5 @@
 <?php
-// Headers
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
 
-// Include database and object files
-include_once '../../config/Database.php';
-include_once '../../models/Quote.php';
-
-// Instantiate DB & connect
-$database = new Database();
-$db = $database->connect();
-
-// Instantiate quote object
-$quote = new Quote($db);
 
 // Query quotes
 $result = $quote->read();

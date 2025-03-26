@@ -1,16 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
 
-include_once '../../config/Database.php';
-include_once '../../models/Quote.php';
-
-// Instantiate DB & connect
-$database = new Database();
-$db = $database->connect();
-
-// Instantiate quote object
-$quote = new Quote($db);
 
 // Check if category_id and author_id are provided
 if (isset($_GET['category_id']) && isset($_GET['author_id'])) {

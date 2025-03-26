@@ -1,16 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
 
-include_once '../../config/Database.php';
-include_once '../../models/Category.php';
-
-// Instantiate DB & connect
-$database = new Database();
-$db = $database->connect();
-
-// Instantiate category object
-$category = new Category($db);
 
 // Category query
 $result = $category->read();
